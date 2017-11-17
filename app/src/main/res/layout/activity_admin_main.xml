@@ -30,12 +30,12 @@
         android:layout_centerInParent="true">
 
         <Button
-            android:id="@+id/addEmployeeButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/addNewEmployeeButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:text="Add Employee"
+            android:text="Add New Employee"
             />
 
         <LinearLayout
