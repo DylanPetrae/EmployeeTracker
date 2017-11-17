@@ -16,25 +16,28 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
-        android:text="Administrative Control Panel"
+        android:text="Administrator Control Panel"
         android:textSize="27sp"
         android:textStyle="bold"
         android:layout_margin="16dp"
         android:textColor="#ffff"
         />
 
+
+    <!--Holds All The Buttons, Except 'Logout' -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/adminControlPanelText">
 
         <Button
             android:id="@+id/addNewEmployeeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="8dp"
+            android:layout_marginHorizontal="16dp"
             android:text="Add New Employee"
             />
 
@@ -57,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:padding="16dp"
+                    android:layout_margin="8dp"
                     android:text="View Locations" />
 
                 <Button
@@ -65,7 +68,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="View Photos" />
+                    android:layout_margin="8dp"
+                    android:text="View Photos"/>
 
             </LinearLayout>
 
@@ -84,12 +88,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="8dp"
                     android:text="Change Password"
                     />
 
                 <Button
                     android:id="@+id/employeeListButton"
                     android:layout_width="match_parent"
+                    android:layout_margin="8dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Employee List"
@@ -102,17 +108,14 @@
     </LinearLayout>
 
 
-
     <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/adminLogoutButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
-        android:text="LOGOUT"
-        android:textColor="#ffff"/>
+        android:text="log out"
+        android:onClick="logoutUser" />
+
 </RelativeLayout>
