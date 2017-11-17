@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.employeetracker.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColorLaunch"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/evilcorplogo"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="2"
+            />
+
+
+        <EditText
+            android:id="@+id/TFusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:ems="10"
+            android:textColor="#ffff"
+            android:hint="Username"
+            android:textColorHint="#ffff"
+            android:theme="@style/Theme.AppCompat"
+            android:inputType="textVisiblePassword|textNoSuggestions"/>
+
+        <EditText
+            android:id="@+id/TFpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center_horizontal"
+            android:ems="10"
+            android:textColor="#ffff"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:theme="@style/Theme.AppCompat"
+            android:textColorHint="#ffff"
+            android:fontFamily="sans-serif"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="16dp"
+            android:text="LOG IN"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffff"/>
+    </LinearLayout>
+
+</RelativeLayout>
