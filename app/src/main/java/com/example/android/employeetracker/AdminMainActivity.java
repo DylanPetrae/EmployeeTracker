@@ -17,4 +17,9 @@ public class AdminMainActivity extends AppCompatActivity {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }
+
+    public void addEmployee( View view ){
+        Intent i = new Intent( this, AddEmployeeActivity.class);
+        startActivity(i);
+    }
 }

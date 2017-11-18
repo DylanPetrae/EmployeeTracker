@@ -9,23 +9,38 @@
     tools:context="com.example.android.employeetracker.AdminMainActivity">
 
 
-    <TextView
+    <!--Holds the "Admin Control Panel" text and the dividing dark gray line -->
+    <LinearLayout
         android:id="@+id/adminControlPanelText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:text="Administrator Control Panel"
-        android:textSize="27sp"
-        android:textStyle="bold"
-        android:layout_margin="16dp"
-        android:textColor="#ffff"
-        />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Administrator Control Panel"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
+            android:textColor="#ffff"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/darker_gray"/>
+
+    </LinearLayout>
+
 
 
     <!--Holds All The Buttons, Except 'Logout' -->
     <LinearLayout
+        android:id="@+id/adminButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -39,6 +54,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="16dp"
             android:text="Add New Employee"
+            android:onClick="addEmployee"
             />
 
         <LinearLayout

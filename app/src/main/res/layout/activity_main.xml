@@ -36,7 +36,8 @@
             android:hint="Username"
             android:textColorHint="#ffff"
             android:theme="@style/Theme.AppCompat"
-            android:inputType="textVisiblePassword|textNoSuggestions"/>
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            />
 
         <EditText
             android:id="@+id/TFpassword"

@@ -16,7 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminMainActivity"></activity>
+        <activity
+            android:name=".AdminMainActivity"
+            android:label="Admin Control Panel"/>
+        <activity
+            android:name=".AddEmployeeActivity"
+            android:label="Add Employee"/>
     </application>
 
 </manifest>
