@@ -14,9 +14,18 @@
 
         <TextView
             style="@style/EmployeePageHeaderText"
+            android:textSize="30sp"
+            android:id="@+id/welcomeUser"
+            android:layout_margin="16dp"
+
+            />
+
+        <TextView
+            style="@style/EmployeePageHeaderText"
             android:layout_margin="16dp"
             android:text="Your Location"
             />
+
 
         <View
             android:layout_width="match_parent"
@@ -67,37 +76,19 @@
                 android:layout_weight="1"/>
         </LinearLayout>
 
-        <!-- EMPLOYEE ID -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <TextView
-                style="@style/EmployeePageHeaderText"
-                android:text="Employee ID:"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
-
-            <TextView
-                style="@style/EmployeePageHeaderText"
-                android:text="1410"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
-        </LinearLayout>
 
     </LinearLayout>
 
     <!-- LOG OUT BUTTON -->
     <!-- RETURNS TO MAIN ACTIVITY LOGIN PAGE -->
     <Button
+        android:id="@+id/employeeLogoutButton"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:id="@+id/employeeLogoutButton"
         android:layout_alignParentBottom="true"
-        android:text="log out"
-        android:onClick="logoutUser" />
+        android:text="log out" />
 
 </RelativeLayout>

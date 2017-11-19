@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="10">
+
+        <!--"Employee Details Text Heading" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Employee Details"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:layout_margin="16dp"
+            android:textColor="#ffff"
+            />
+
+        <!--Dividing Line between Header Text and Text Fields-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/darker_gray"/>
+
+        <!-- Name of Columns -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray">
+
+            <TextView
+                style="@style/EmployeePageHeaderText"
+                android:id="@+id/employee_id"
+                android:text="ID"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/employee_name"
+                style="@style/EmployeePageHeaderText"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:text="Name"/>
+
+            <TextView
+                android:id="@+id/employee_phone_number"
+                style="@style/EmployeePageHeaderText"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Phone #"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/admin_logout_button"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Control Panel"
+        android:onClick="gotoControlPanel" />
+
+</LinearLayout>

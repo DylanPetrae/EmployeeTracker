@@ -11,7 +11,7 @@
 
     <!--Holds the "Admin Control Panel" text and the dividing dark gray line -->
     <LinearLayout
-        android:id="@+id/adminControlPanelText"
+        android:id="@+id/admin_control_panel_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -40,15 +40,15 @@
 
     <!--Holds All The Buttons, Except 'Logout' -->
     <LinearLayout
-        android:id="@+id/adminButtons"
+        android:id="@+id/admin_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/adminControlPanelText">
+        android:layout_below="@id/admin_control_panel_text">
 
         <Button
-            android:id="@+id/addNewEmployeeButton"
+            android:id="@+id/add_new_employee_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,7 +58,7 @@
             />
 
         <LinearLayout
-            android:id="@+id/adminOptions"
+            android:id="@+id/admin_options"
             android:layout_width="match_parent"
             android:baselineAligned="false"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_margin="8dp">
 
                 <Button
-                    android:id="@+id/viewLocationsButton"
+                    android:id="@+id/view_locations_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -80,7 +80,7 @@
                     android:text="View Locations" />
 
                 <Button
-                    android:id="@+id/viewPhotosButton"
+                    android:id="@+id/view_photos_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -100,16 +100,17 @@
                 android:layout_margin="8dp">
 
                 <Button
-                    android:id="@+id/changePasswordButton"
+                    android:id="@+id/change_password_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="8dp"
                     android:text="Change Password"
+                    android:onClick="changePassword"
                     />
 
                 <Button
-                    android:id="@+id/employeeListButton"
+                    android:id="@+id/employee_list_button"
                     android:layout_width="match_parent"
                     android:layout_margin="8dp"
                     android:layout_height="wrap_content"
@@ -125,11 +126,11 @@
 
 
     <Button
+        android:id="@+id/admin_logout_button"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
-        android:id="@+id/adminLogoutButton"
         android:layout_alignParentBottom="true"
         android:text="log out"
         android:onClick="logoutUser" />
