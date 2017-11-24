@@ -10,11 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -53,7 +50,6 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
         //Start getting our user data ready
         HashMap<String, Object> userMap = new HashMap<String, Object>();
-        HashMap<Object,Object>  userData = new HashMap<Object,Object>();
         HashMap<String,String>  dateLoc  = new HashMap<String, String>();
 
         userMap.put("email", user.getEmail());
