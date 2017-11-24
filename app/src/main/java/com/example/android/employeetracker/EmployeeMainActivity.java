@@ -62,9 +62,10 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         dateLoc.put(new SimpleDateFormat("yyyy.MM.dd").format(new Date()), "GPS LOCATION HERE");
 
         userMap.put("location",dateLoc);
+        //userMap.put("temp","temp");
 
-        //add to our 'users' collection
-        db.collection("users").document(user.getUid()).set(userMap);
+        //update to 'users' data
+        db.collection("users").document(user.getUid()).update(userMap);
 
 
         textViewUserEmail = (TextView) findViewById(R.id.welcomeUser);
