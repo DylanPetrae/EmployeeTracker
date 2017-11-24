@@ -1,11 +1,14 @@
 package com.example.android.employeetracker;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -96,11 +99,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        // Dialog box for wrong login
+                        AlertDialog alert;
                         progressDialog.dismiss();
 
                         if(task.isSuccessful()){
                             finish();
                             startActivity(new Intent(getApplicationContext(), EmployeeMainActivity.class));
+                        }
+                        else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(
+                                    new ContextThemeWrapper(MainActivity.this, android.R.style.DeviceDefault_ButtonBar_AlertDialog));
+                            builder.setCancelable(true);
+                            builder.setTitle("Incorrect Login.");
+                            builder.setMessage("Try again.");
+                            builder.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog,
+                                                            int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            alert = builder.create();
+                            alert.show();
+                            editTextEmail.setText("");
+                            editTextPassword.setText("");
                         }
 
                     }
