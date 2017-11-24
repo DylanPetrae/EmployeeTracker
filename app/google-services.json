@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "841328582822",
+    "firebase_url": "https://employee-tracker-54399.firebaseio.com",
+    "project_id": "employee-tracker-54399",
+    "storage_bucket": "employee-tracker-54399.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841328582822:android:2a8cb02843f0301c",
+        "android_client_info": {
+          "package_name": "com.example.android.employeetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841328582822-aur0julu6bsof9ogj1h1ro07c95qnaa4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.employeetracker",
+            "certificate_hash": "4ab521ebba6530e7aff1384978641a17348d6cd1"
+          }
+        },
+        {
+          "client_id": "841328582822-dh1jkgkd4t0v1ghmq3ku2qlt7uiv6t4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNqfcpZv6F-Z-XXBGoPj9NaKRP8Ej6oqw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841328582822-dh1jkgkd4t0v1ghmq3ku2qlt7uiv6t4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
