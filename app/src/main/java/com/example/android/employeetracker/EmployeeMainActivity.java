@@ -60,7 +60,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         // Take user to camera immediately after log in
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if(cameraIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(cameraIntent, 1); // Not calling OnActivityResult; therefore map is null
+            startActivityForResult(cameraIntent, 1); // Not calling OnActivityResult; map is null
         }
 
         // Store image to bitmap
