@@ -88,7 +88,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         //update to 'users' data
         db.collection("users").document(user.getUid()).update(userMap);
 
-
+          // TODO: This Camera code is causing crash
 //        // Take user to camera immediately after log in
 //        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        if(cameraIntent.resolveActivity(getPackageManager()) != null) {
