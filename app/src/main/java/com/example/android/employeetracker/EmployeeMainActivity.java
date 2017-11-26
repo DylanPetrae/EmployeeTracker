@@ -1,18 +1,22 @@
 package com.example.android.employeetracker;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.provider.MediaStore;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Base64;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,13 +33,19 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Date;
 
-
 public class EmployeeMainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    // Firebase methods
     private FirebaseAuth firebaseAuth;
 
-    private TextView textViewUserEmail;
+    // Location methods
+    LocationManager locationManager;
+    LocationListener locationListener;
 
+    private FirebaseUser user;
+
+    private TextView textViewUserEmail;
+  
     private Button buttonLogout;
 
     @Override
@@ -44,8 +54,6 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_employee_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         // If user is NOT logged in
         if(firebaseAuth.getCurrentUser() == null) {
@@ -56,6 +64,8 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         // Take user to camera immediately after log in
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, 0);
+
+        user = firebaseAuth.getCurrentUser();
 
         //Intialize Instace of FireStore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -82,12 +92,33 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         buttonLogout = (Button) findViewById(R.id.employeeLogoutButton);
 
         buttonLogout.setOnClickListener(this);
+
+        // Location
+        // TODO: Check if GPS is enables. Else, request permission
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new MyLocationListener(user);
+
+        try {
+            // Store GPS every 5 minutes (300000 milliseconds)
+            locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER,5000, 0, locationListener);
+        }
+        catch (SecurityException e) {
+            //ERROR
+            System.err.println("ERROR: Couldn't retrieve GPS.");
+        }
+
+    }
+
+    public FirebaseUser getUser(){
+        return user;
     }
 
     @Override
     public void onClick(View view){
         if(view == buttonLogout){
             firebaseAuth.signOut();
+            locationManager.removeUpdates(locationListener);
+            locationManager = null;
             finish();
             startActivity(new Intent(this, MainActivity.class));
         }
@@ -96,6 +127,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Store image to database
+
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == 0 && resultCode == RESULT_OK) {
@@ -127,6 +159,5 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
                 }
             });
         }
-
     }
 }
