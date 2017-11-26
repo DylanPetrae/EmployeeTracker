@@ -38,10 +38,6 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
     private Button buttonLogout;
 
-    private Bitmap map;
-
-    static final int TAKE_PICTURE_REQUEST = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +55,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
         // Take user to camera immediately after log in
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, 0); // Not calling OnActivityResult; map is null
+        startActivityForResult(cameraIntent, 0);
 
         //Intialize Instace of FireStore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -121,7 +117,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                        Log.d("myTag", "picture not sent to firebase");
+                    Log.d("myTag", "picture not sent to firebase");
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
