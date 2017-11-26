@@ -1,20 +1,20 @@
 package com.example.android.employeetracker;
 
+import android.app.Activity;
+import android.content.Context;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,17 +22,25 @@ import java.util.Map;
 class MyLocationListener implements LocationListener{
     // variables
     private FirebaseFirestore db;
-    GeoPoint geoPointLocation;
+
+    private GeoPoint geoPointLocation;
     private double latitude;
     private double longitude;
+
     private HashMap<String,Object> userMap;
+
+    private Activity activity;
+
+    private TextView textViewLatitude;
+    private TextView textViewLongitude;
 
     FirebaseUser user;
 
-    public MyLocationListener(FirebaseUser user, HashMap<String,Object> userMap) {
+    public MyLocationListener(FirebaseUser user, HashMap<String,Object> userMap, Activity activity) {
         db = FirebaseFirestore.getInstance();
         this.user = user;
         this.userMap = userMap;
+        this.activity = activity;
     }
 
 
@@ -52,6 +60,14 @@ class MyLocationListener implements LocationListener{
 
     public void onLocationChanged(android.location.Location location){
         storeLocation(location);
+
+        // Set UI Lat/Lon text
+        if(getLocation() != null){
+            textViewLatitude = (TextView) activity.findViewById(R.id.latitudeText);
+            textViewLatitude.setText(Double.toString(getLocation().getLatitude()));
+            textViewLongitude = (TextView) activity.findViewById(R.id.longitudeText);
+            textViewLongitude.setText(Double.toString(getLocation().getLongitude()));
+        }
 
         // Get user from Firebase
 

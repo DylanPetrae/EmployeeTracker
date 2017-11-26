@@ -3,7 +3,10 @@ package com.example.android.employeetracker;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextEmail;
     private EditText editTextPassword;
 
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 100;
+
     private ProgressDialog progressDialog;
 
     //defining firebaseauth object
@@ -40,22 +45,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //initializing firebase auth object
+
+        //initializing Firebase Auth object
         firebaseAuth = FirebaseAuth.getInstance();
 
-        // if employee is already logged in
-        if(firebaseAuth.getCurrentUser() != null){
-            // If user is already logged in and IS an admin
-            if(firebaseAuth.getUid().equals("WsOdq6SUCOQjtE2HZG0epJeUJah2")){
-                finish();
-                startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
-            }
-            // If user is already logged in and NOT an admin
-            else {
-                finish();
-                startActivity(new Intent(getApplicationContext(), EmployeeMainActivity.class));
+        // Check if GPS permission is true
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_LOCATION);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // if employee is already logged in
+            if(firebaseAuth.getCurrentUser() != null){
+                // If user is already logged in and IS an admin
+                if(firebaseAuth.getUid().equals("WsOdq6SUCOQjtE2HZG0epJeUJah2")){
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
+                }
+                // If user is already logged in and NOT an admin
+                else {
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), EmployeeMainActivity.class));
+                }
             }
         }
+        else {
+            System.exit(1);
+        }
+
+
 
 
         progressDialog = new ProgressDialog(this);
