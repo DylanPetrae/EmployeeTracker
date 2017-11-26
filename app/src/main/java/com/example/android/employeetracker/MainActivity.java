@@ -45,9 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // if employee is already logged in
         if(firebaseAuth.getCurrentUser() != null){
-            //employee main screen here
-            finish();
-            startActivity(new Intent(getApplicationContext(), EmployeeMainActivity.class));
+            // If user is already logged in and IS an admin
+            if(firebaseAuth.getUid().equals("WsOdq6SUCOQjtE2HZG0epJeUJah2")){
+                finish();
+                startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
+            }
+            // If user is already logged in and NOT an admin
+            else {
+                finish();
+                startActivity(new Intent(getApplicationContext(), EmployeeMainActivity.class));
+            }
         }
 
 
@@ -104,8 +111,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         progressDialog.dismiss();
 
                         if(task.isSuccessful()){
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), EmployeeMainActivity.class));
+                            if(firebaseAuth.getUid().equals("WsOdq6SUCOQjtE2HZG0epJeUJah2")) {
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), AdminMainActivity.class));
+                            }
+                            else{
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), EmployeeMainActivity.class));
+                            }
                         }
                         else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(

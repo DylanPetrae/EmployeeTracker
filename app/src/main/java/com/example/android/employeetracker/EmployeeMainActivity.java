@@ -6,6 +6,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +14,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Base64;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Date;
@@ -35,6 +48,8 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
     private FirebaseUser user;
 
     private TextView textViewUserEmail;
+
+    private Bitmap map;
 
     private Button buttonLogout;
 
@@ -71,6 +86,39 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         HashMap<String,String> userList = new HashMap<String,String>();
         userList.put(user.getUid(), user.getEmail());
         db.collection("users").document("list").set(userList,SetOptions.merge());
+
+          // TODO: This Camera code is causing crash
+//        // Take user to camera immediately after log in
+//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        if(cameraIntent.resolveActivity(getPackageManager()) != null) {
+//            startActivityForResult(cameraIntent, 1); // Not calling OnActivityResult; therefore map is null
+//        }
+//
+//        // Store image to bitmap
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        map.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//        byte[] data = baos.toByteArray();
+//
+//        // Create reference to filepath
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference storageRef = storage.getReference();
+//        StorageReference userImageRef = storageRef.child("images/" + user.getUid() + ".jpg");
+//
+//        // Upload to Firebase Storage
+//        UploadTask uploadTask = userImageRef.putBytes(data);
+//        uploadTask.addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception exception) {
+//                // Handle unsuccessful uploads
+//            }
+//        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+//                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//            }
+//        });
+
 
         textViewUserEmail = (TextView) findViewById(R.id.welcomeUser);
 
@@ -109,5 +157,15 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
             finish();
             startActivity(new Intent(this, MainActivity.class));
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Store image to database
+        Log.d("myTag", "accessed" );
+               if(requestCode == 1 && resultCode == RESULT_OK) {
+                   Bundle extras = data.getExtras();
+                   Bitmap map = (Bitmap) extras.get("data");
+               }
     }
 }
