@@ -31,36 +31,13 @@
             android:layout_marginBottom="16dp"
             android:background="@android:color/darker_gray"/>
 
-        <!-- Name of Columns -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="16dp"
-            android:background="@android:color/darker_gray">
-
-            <TextView
-                style="@style/EmployeePageHeaderText"
-                android:id="@+id/employee_id"
-                android:text="ID"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:id="@+id/employee_name"
-                style="@style/EmployeePageHeaderText"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="Email"/>
-
-
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/textViewEmployeeList"
+            style="@style/EmployeePageParagraphText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textIsSelectable="true"
             android:enabled="true"
             android:isScrollContainer="true"
             android:focusable="true"
