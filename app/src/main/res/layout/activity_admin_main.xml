@@ -77,7 +77,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_margin="8dp"
-                    android:text="View Locations" />
+                    android:text="View Locations"
+                    android:onClick="viewLocations"/>
 
                 <Button
                     android:id="@+id/view_photos_button"
@@ -85,7 +86,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_margin="8dp"
-                    android:text="View Photos"/>
+                    android:text="View Photos"
+                    android:onClick="viewPhotos"/>
 
             </LinearLayout>
 
@@ -116,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Employee List"
+                    android:onClick="viewEmployeeList"
                     />
 
 

@@ -16,13 +16,10 @@
         android:gravity="center_horizontal">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:src="@drawable/evilcorplogo"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="282dp"
+            android:layout_height="57dp"
             android:layout_weight="2"
-            />
+            android:src="@drawable/evilcorplogo" />
 
 
         <EditText
@@ -31,12 +28,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:gravity="center_horizontal"
-            android:textColor="#ffff"
             android:hint="E-mail Address"
-            android:textColorHint="#ffff"
-            android:theme="@style/Theme.AppCompat"
             android:inputType="textEmailAddress"
-            />
+            android:textColor="#ffff"
+            android:textColorHint="#ffff"
+            android:theme="@style/Theme.AppCompat" />
 
         <EditText
             android:id="@+id/edit_text_password"
@@ -53,10 +49,12 @@
 
         <Button
             android:id="@+id/button_login"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="36dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="0dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="0dp"
             android:text="LOG IN"
             android:background="@color/colorPrimary"
             android:textColor="#ffff"/>

@@ -33,6 +33,12 @@
             android:label="Change Password"/>
         <activity android:name=".EmployeeMainActivity"
             android:label="Employee Profile"/>
+        <activity android:name=".ViewPhotoActivity"
+            android:label="View Photos" />
+        <activity android:name=".EmployeeListActivity"
+            android:label="Employee List" />
+        <activity android:name=".ViewLocationsActivity"
+            android:label="View Employee Locations" />
     </application>
 
 </manifest>

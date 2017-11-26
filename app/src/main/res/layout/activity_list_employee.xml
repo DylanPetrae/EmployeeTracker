@@ -50,18 +50,22 @@
                 android:id="@+id/employee_name"
                 style="@style/EmployeePageHeaderText"
                 android:layout_width="0dp"
-                android:layout_weight="3"
-                android:text="Name"/>
+                android:layout_weight="1"
+                android:text="Email"/>
 
-            <TextView
-                android:id="@+id/employee_phone_number"
-                style="@style/EmployeePageHeaderText"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:text="Phone #"/>
+
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textViewEmployeeList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="true"
+            android:isScrollContainer="true"
+            android:focusable="true"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"/>
     </LinearLayout>
 
     <Button

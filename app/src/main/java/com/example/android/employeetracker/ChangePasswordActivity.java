@@ -12,7 +12,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employee_add);
+        setContentView(R.layout.activity_password_change);
     }
 
     public void gotoControlPanel ( View view ){

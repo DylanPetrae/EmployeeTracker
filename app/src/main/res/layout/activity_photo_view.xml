@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Change Password"
+            android:text="View Employee Photo"
             android:textSize="27sp"
             android:textStyle="bold"
             android:layout_margin="16dp"
@@ -57,33 +57,18 @@
 
         </LinearLayout>
 
-        <!--Old Password-->
-        <LinearLayout
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="16dp">
+            android:text="View Photo"
+            android:layout_marginHorizontal="30dp"
+            android:onClick="downloadPhoto"/>
 
-            <TextView
-                style="@style/EmployeePageHeaderText"
-                android:text="Old Password:"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
-
-            <EditText
-                android:id="@+id/old_password"
-                style="@style/EmployeePageHeaderText"
-                android:background="@android:color/darker_gray"
-                android:textColor="#000000"
-                android:textAlignment="viewStart"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
-
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/imageViewEmployeePhoto"
+            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
 
@@ -91,13 +76,13 @@
 
     <!--Go Back to Control Panel Button-->
     <Button
-        android:id="@+id/admin_logout_button"
+        android:id="@+id/control_panel_button"
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
         android:text="Control Panel"
-        android:onClick="gotoControlPanel" />
+        android:onClick="gotoControlPanel"/>
 
 </LinearLayout>
