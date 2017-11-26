@@ -12,6 +12,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -24,11 +25,14 @@ class MyLocationListener implements LocationListener{
     GeoPoint geoPointLocation;
     private double latitude;
     private double longitude;
+    private HashMap<String,Object> userMap;
+
     FirebaseUser user;
 
-    public MyLocationListener(FirebaseUser user) {
+    public MyLocationListener(FirebaseUser user, HashMap<String,Object> userMap) {
         db = FirebaseFirestore.getInstance();
         this.user = user;
+        this.userMap = userMap;
     }
 
 
@@ -50,6 +54,7 @@ class MyLocationListener implements LocationListener{
         storeLocation(location);
 
         // Get user from Firebase
+
         db.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -60,23 +65,28 @@ class MyLocationListener implements LocationListener{
 
                         if (task.isSuccessful()) {
                             // Loop through users
-                            for (DocumentSnapshot document : task.getResult()) {
-                                // If user found
-                                if (document.getId().equals(user.getEmail())) {
-                                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                                    String currentDateandTime = sdf.format(new Date());
 
-                                    // Update location
-                                    locationHashMap.put(currentDateandTime, geoPointLocation);
-                                    db.collection("users").document(document.getId()).update(locationHashMap);
-                                    break;
-                                }
-                            }
+                            HashMap<String,Object>  dateMin  = new HashMap<String, Object>();
+                            HashMap<String,Object>  minLoc   = new HashMap<String,Object>();
+
+                            Date now = new Date();
+                            userMap.put("lastUpdated", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(now));
+                            userMap.put("lastUpdatedDay",new SimpleDateFormat("yyyy.MM.dd").format(now));
+                            userMap.put("lastUpdatedMin", new SimpleDateFormat("HH.mm").format(now));
+
+                            minLoc.put(new SimpleDateFormat("HH.mm").format(now), geoPointLocation);
+                            dateMin.put(new SimpleDateFormat("yyyy.MM.dd").format(now), minLoc);
+
+                            userMap.put("location",dateMin);
+
+                            db.collection("users").document(user.getUid()).set(userMap, SetOptions.merge());
+
                         } else {
                             System.out.println("Error getting documents: " + task.getException());
                         }
                     }
                 });
+
     }
 
     @Override
