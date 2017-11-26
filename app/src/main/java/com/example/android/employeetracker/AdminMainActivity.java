@@ -55,7 +55,7 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
             startActivity(new Intent(this, MainActivity.class));
         }
     }
-//
+
     /*
     public void viewEmployeeList ( View view ){
         Intent i = new Intent(this, )
