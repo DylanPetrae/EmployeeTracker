@@ -31,6 +31,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class EmployeeMainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -144,7 +146,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
             // Create reference to filepath
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
-            StorageReference userImageRef = storageRef.child("images/" + firebaseAuth.getCurrentUser().getUid() + ".jpg");
+            StorageReference userImageRef = storageRef.child("images/" + firebaseAuth.getCurrentUser().getUid() + "_" + new SimpleDateFormat("yyyyMMdd").format(new Date()) + ".jpg");
 
             // Upload to Firebase Storage
             UploadTask uploadTask = userImageRef.putBytes(stream);
