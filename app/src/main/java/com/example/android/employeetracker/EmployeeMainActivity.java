@@ -2,6 +2,7 @@ package com.example.android.employeetracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -61,18 +63,14 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
         //Start getting our user data ready
         HashMap<String, Object> userMap = new HashMap<String, Object>();
-        HashMap<String,String>  dateLoc  = new HashMap<String, String>();
-
         userMap.put("email", user.getEmail());
-        userMap.put("lastUpdated", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
-        userMap.put("lastUpdatedDay",new SimpleDateFormat("yyyy.MM.dd").format(new Date()));
-        dateLoc.put(new SimpleDateFormat("yyyy.MM.dd").format(new Date()), "GPS LOCATION HERE");
-
-        userMap.put("location",dateLoc);
-        //userMap.put("temp","temp");
 
         //update to 'users' data
-        db.collection("users").document(user.getUid()).update(userMap);
+        db.collection("users").document(user.getUid()).set(userMap, SetOptions.merge());
+
+        HashMap<String,String> userList = new HashMap<String,String>();
+        userList.put(user.getUid(), user.getEmail());
+        db.collection("users").document("list").set(userList,SetOptions.merge());
 
         textViewUserEmail = (TextView) findViewById(R.id.welcomeUser);
 
@@ -85,7 +83,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         // Location
         // TODO: Check if GPS is enables. Else, request permission
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new MyLocationListener(user);
+        locationListener = new MyLocationListener(user,userMap);
 
         try {
             // Store GPS every 5 minutes (300000 milliseconds)
