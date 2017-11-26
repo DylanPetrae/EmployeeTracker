@@ -30,11 +30,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.Date;
+import java.util.HashMap;
 
 public class EmployeeMainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -43,7 +42,8 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
     // Location methods
     LocationManager locationManager;
-    LocationListener locationListener;
+    MyLocationListener locationListener;
+    android.location.Location location;
 
     private FirebaseUser user;
 
@@ -53,6 +53,8 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String userEmail;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_main);
 
@@ -84,22 +86,25 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         userList.put(user.getUid(), user.getEmail());
         db.collection("users").document("list").set(userList,SetOptions.merge());
 
+        // Set UI welcome text
         textViewUserEmail = (TextView) findViewById(R.id.welcomeUser);
-
-        textViewUserEmail.setText("Welcome "+user.getEmail());
+        userEmail = user.getEmail();
+        textViewUserEmail.setText("Welcome, "+ userEmail.substring(0,1).toUpperCase() + userEmail.substring(1,userEmail.indexOf('@')));
 
         buttonLogout = (Button) findViewById(R.id.employeeLogoutButton);
 
         buttonLogout.setOnClickListener(this);
 
         // Location
-        // TODO: Check if GPS is enables. Else, request permission
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new MyLocationListener(user,userMap);
+        locationListener = new MyLocationListener(user,userMap,this);
+
 
         try {
             // Store GPS every 5 minutes (300000 milliseconds)
-            locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER,5000, 0, locationListener);
+            locationManager.requestLocationUpdates( LocationManager.GPS_PROVIDER,300000, 0, locationListener);
+
+
         }
         catch (SecurityException e) {
             //ERROR
@@ -141,19 +146,19 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
             // Create reference to filepath
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
-            StorageReference userImageRef = storageRef.child("images/" + firebaseAuth.getCurrentUser().getUid() + ".jpg");
+            StorageReference userImageRef = storageRef.child("images/" + firebaseAuth.getCurrentUser().getUid() + "_" + new SimpleDateFormat("yyyyMMdd").format(new Date()) + ".jpg");
 
             // Upload to Firebase Storage
             UploadTask uploadTask = userImageRef.putBytes(stream);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    Log.d("myTag", "picture not sent to firebase");
+                    Log.d("myTag", "ERROR: Picture not sent to Firebase.");
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.d("myTag", "picture sent to firebase");
+                    Log.d("myTag", "Success. Picture sent to Firebase.");
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
                 }
             });

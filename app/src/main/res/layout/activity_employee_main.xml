@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
 
@@ -14,14 +15,12 @@
 
         <TextView
             style="@style/EmployeePageHeaderText"
-            android:textSize="30sp"
             android:id="@+id/welcomeUser"
-            android:layout_margin="16dp"
-
+            android:text="Welcome"
             />
 
         <TextView
-            style="@style/EmployeePageHeaderText"
+            style="@style/EmployeePageParagraphText"
             android:layout_margin="16dp"
             android:text="Your Location"
             />
@@ -41,16 +40,17 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/EmployeePageHeaderText"
+                style="@style/EmployeePageParagraphText"
                 android:text="Latitude:"
                 android:layout_width="0dp"
                 android:layout_weight="1"/>
 
             <TextView
-                style="@style/EmployeePageHeaderText"
-                android:text="28.6033976"
+                style="@style/EmployeePageParagraphText"
+                android:text="0"
                 android:layout_width="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/latitudeText"/>
 
 
 
@@ -64,16 +64,17 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/EmployeePageHeaderText"
+                style="@style/EmployeePageParagraphText"
                 android:text="Longitude:"
                 android:layout_width="0dp"
                 android:layout_weight="1"/>
 
             <TextView
-                style="@style/EmployeePageHeaderText"
-                android:text="-81.1987778"
+                style="@style/EmployeePageParagraphText"
+                android:text="0"
                 android:layout_width="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:id="@+id/longitudeText"/>
         </LinearLayout>
 
 
@@ -84,11 +85,14 @@
     <!-- RETURNS TO MAIN ACTIVITY LOGIN PAGE -->
     <Button
         android:id="@+id/employeeLogoutButton"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:text="log out" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="0dp"
+        android:textStyle="bold"
+        android:text="log out"
+        android:textSize="20dp" />
 
 </RelativeLayout>
