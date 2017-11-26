@@ -40,11 +40,12 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
     private Bitmap map;
 
+    static final int TAKE_PICTURE_REQUEST = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_main);
-
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -54,39 +55,11 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
         if(firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, MainActivity.class));
-
         }
 
         // Take user to camera immediately after log in
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(cameraIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(cameraIntent, 1); // Not calling OnActivityResult; map is null
-        }
-
-        // Store image to bitmap
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        map.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] data = baos.toByteArray();
-
-        // Create reference to filepath
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        StorageReference userImageRef = storageRef.child("images/" + user.getUid() + ".jpg");
-
-        // Upload to Firebase Storage
-        UploadTask uploadTask = userImageRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-            }
-        });
+        startActivityForResult(cameraIntent, 0); // Not calling OnActivityResult; map is null
 
         //Intialize Instace of FireStore
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -105,7 +78,6 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
 
         //update to 'users' data
         db.collection("users").document(user.getUid()).update(userMap);
-
 
         textViewUserEmail = (TextView) findViewById(R.id.welcomeUser);
 
@@ -128,10 +100,36 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Store image to database
-        Log.d("myTag", "accessed" );
-        if(requestCode == 1 && resultCode == RESULT_OK) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0 && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap map = (Bitmap) extras.get("data");
+
+            //Store image to bitmap
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            map.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] stream = baos.toByteArray();
+
+            // Create reference to filepath
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            StorageReference userImageRef = storageRef.child("images/" + firebaseAuth.getCurrentUser().getUid() + ".jpg");
+
+            // Upload to Firebase Storage
+            UploadTask uploadTask = userImageRef.putBytes(stream);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                        Log.d("myTag", "picture not sent to firebase");
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.d("myTag", "picture sent to firebase");
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                }
+            });
         }
 
     }

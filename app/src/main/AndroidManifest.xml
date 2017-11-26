@@ -31,7 +31,8 @@
             android:name=".ChangePasswordActivity"
             android:label="Change Password"/>
         <activity android:name=".EmployeeMainActivity"
-            android:label="Employee Profile"/>
+            android:label="Employee Profile"
+            android:launchMode="standard"/>
     </application>
 
 </manifest>
