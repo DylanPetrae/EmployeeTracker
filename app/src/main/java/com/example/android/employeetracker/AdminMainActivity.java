@@ -52,6 +52,16 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
         startActivity(i);
     }
 
+    public void viewEmployeeList ( View view ) {
+        Intent i = new Intent(this, EmployeeListActivity.class);
+        startActivity(i);
+    }
+
+    public void viewLocations ( View view ) {
+        Intent i = new Intent (this, ViewLocationsActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public void onClick(View view){
         if(view == buttonLogout){
