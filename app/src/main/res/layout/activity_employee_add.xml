@@ -10,14 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-        </LinearLayout>
             <!-- Add New Employee Text Heading -->
             <TextView
                 android:id="@+id/add_new_employee_text"
@@ -40,29 +32,6 @@
                 android:background="@android:color/darker_gray" />
 
         <!-- Employee ID -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="16dp">
-
-            <TextView
-                style="@style/EmployeePageHeaderText"
-                android:text="Employee ID:"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
-
-            <EditText
-                android:id="@+id/new_employee_ID"
-                style="@style/EmployeePageHeaderText"
-                android:background="@android:color/darker_gray"
-                android:textColor="#000000"
-                android:textAlignment="viewStart"
-                android:singleLine="true"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
 
         <!-- Employee Name -->
         <LinearLayout
@@ -74,20 +43,20 @@
 
             <TextView
                 style="@style/EmployeePageHeaderText"
-                android:text="Email:"
                 android:layout_width="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="Email:" />
 
             <EditText
-                android:id="@+id/new_employee_name"
+                android:id="@+id/new_employee_email"
                 style="@style/EmployeePageHeaderText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:background="@android:color/darker_gray"
-                android:textColor="#000000"
-                android:textAlignment="viewStart"
                 android:inputType="textVisiblePassword|textNoSuggestions"
                 android:singleLine="true"
-                android:layout_width="0dp"
-                android:layout_weight="1"/>
+                android:textAlignment="viewStart"
+                android:textColor="#000000" />
         </LinearLayout>
 
         <!-- Employee Mobile Number -->
@@ -99,19 +68,19 @@
 
             <TextView
                 style="@style/EmployeePageHeaderText"
-                android:text="Password:"
                 android:layout_width="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="Password:" />
 
             <EditText
-                android:id="@+id/new_employee_mobile_number"
+                android:id="@+id/new_employee_password"
                 style="@style/EmployeePageHeaderText"
-                android:background="@android:color/darker_gray"
-                android:textColor="#000000"
-                android:textAlignment="viewStart"
-                android:singleLine="true"
                 android:layout_width="0dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="#000000" />
         </LinearLayout>
 
         <Button
