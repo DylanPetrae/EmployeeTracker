@@ -164,4 +164,9 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
             });
         }
     }
+
+    public void gotoChangePassword ( View view ) {
+        Intent i = new Intent (this, ChangePasswordActivity.class);
+        startActivity(i);
+    }
 }
