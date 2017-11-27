@@ -28,6 +28,7 @@ class DatabaseSimple {
     ArrayList<String> validTimes;
     GeoPoint geoDude;
     GeoPoint mostRecentLocation;
+    public static GeoPoint myGeoPoint;
 
 
     DatabaseSimple()

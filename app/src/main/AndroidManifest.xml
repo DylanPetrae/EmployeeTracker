@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -15,6 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,21 +32,29 @@
         </activity>
         <activity
             android:name=".AdminMainActivity"
-            android:label="Admin Control Panel"/>
+            android:label="Admin Control Panel" />
         <activity
             android:name=".AddEmployeeActivity"
-            android:label="Add Employee"/>
+            android:label="Add Employee" />
         <activity
             android:name=".ChangePasswordActivity"
-            android:label="Change Password"/>
-        <activity android:name=".EmployeeMainActivity"
-            android:label="Employee Profile"/>
-        <activity android:name=".ViewPhotoActivity"
+            android:label="Change Password" />
+        <activity
+            android:name=".EmployeeMainActivity"
+            android:label="Employee Profile" />
+        <activity
+            android:name=".ViewPhotoActivity"
             android:label="View Photos" />
-        <activity android:name=".EmployeeListActivity"
+        <activity
+            android:name=".EmployeeListActivity"
             android:label="Employee List" />
-        <activity android:name=".ViewLocationsActivity"
+        <activity
+            android:name=".ViewLocationsActivity"
             android:label="View Employee Locations" />
+        <activity android:name=".MapView" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
