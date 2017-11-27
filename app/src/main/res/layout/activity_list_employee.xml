@@ -32,11 +32,23 @@
             android:background="@android:color/darker_gray"/>
 
 
+
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+
+        <TextView
+            android:id="@+id/textViewEmployeeList"
+            style="@style/EmployeePageParagraphText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:enabled="true"
+            android:isScrollContainer="true"
+            android:focusable="true"
+
             android:layout_marginHorizontal="16dp"
             />
 
