@@ -52,9 +52,9 @@
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginHorizontal="0dp"
+            android:layout_marginHorizontal="50dp"
             android:textSize="20dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginBottom="16dp"
             android:text="LOG IN"
             android:background="@color/colorPrimary"
             android:textColor="#ffff"/>
