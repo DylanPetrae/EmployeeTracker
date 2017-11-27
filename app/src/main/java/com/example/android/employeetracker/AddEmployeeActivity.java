@@ -14,6 +14,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_add);
     }
 
+    //lol okay
     // Add Employee to database, using the data in the fields
     // public void addEmployee ()
 
