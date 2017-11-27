@@ -3,14 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
-
+    android:background="#fffffff">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="10">
-
         <!--"Employee Details Text Heading" -->
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +20,6 @@
             android:layout_margin="16dp"
             android:textColor="#000000"
             />
-
         <!--Dividing Line between Header Text and Text Fields-->
         <View
             android:layout_width="match_parent"
@@ -30,41 +27,25 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="16dp"
             android:background="@android:color/darker_gray"/>
-
-
-
         <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-
+            android:layout_marginHorizontal="16dp"
+            />
         <TextView
             android:id="@+id/textViewEmployeeList"
-            style="@style/EmployeePageParagraphText"
+            android:textColor="#000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textIsSelectable="true"
             android:enabled="true"
             android:isScrollContainer="true"
             android:focusable="true"
-
             android:layout_marginHorizontal="16dp"
-            />
-
-        <TextView
-        android:id="@+id/textViewEmployeeList"
-        style="@style/EmployeePageParagraphText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textIsSelectable="true"
-        android:enabled="true"
-        android:isScrollContainer="true"
-        android:focusable="true"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"/>
     </LinearLayout>
-
     <Button
         android:id="@+id/admin_logout_button"
         android:layout_height="0dp"
@@ -74,5 +55,4 @@
         android:layout_marginBottom="16dp"
         android:text="Control Panel"
         android:onClick="gotoControlPanel" />
-
 </LinearLayout>

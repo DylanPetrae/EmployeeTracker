@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Administrator Control Panel"
+            android:gravity="center"
             android:textSize="27sp"
             android:textStyle="bold"
             android:layout_margin="16dp"

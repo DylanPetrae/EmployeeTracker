@@ -47,11 +47,10 @@
             android:label="View Photos" />
         <activity
             android:name=".EmployeeListActivity"
-            android:label="Employee List" />
+            android:label="Employee List"/>
         <activity
             android:name=".ViewLocationsActivity"
             android:label="View Employee Locations" />
-        <activity android:name=".MapView" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
