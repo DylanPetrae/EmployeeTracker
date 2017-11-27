@@ -146,7 +146,7 @@ public class EmployeeMainActivity extends AppCompatActivity implements View.OnCl
             // Create reference to filepath
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
-            StorageReference userImageRef = storageRef.child("images/" + firebaseAuth.getCurrentUser().getUid() + "_" + new SimpleDateFormat("yyyyMMdd").format(new Date()) + ".jpg");
+            StorageReference userImageRef = storageRef.child("images/" + firebaseAuth.getCurrentUser().getUid() + ".jpg");
 
             // Upload to Firebase Storage
             UploadTask uploadTask = userImageRef.putBytes(stream);

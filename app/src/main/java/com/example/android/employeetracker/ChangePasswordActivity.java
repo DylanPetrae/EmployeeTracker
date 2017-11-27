@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
-    String newPassword = "";
 
     private EditText editTextNewPassword;
 
@@ -37,7 +36,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     public void changePassword ( View view ) {
 
-        String emailAddress = editTextNewPassword.getText().toString();
         String newPassword = editTextNewPassword.getText().toString();
 
         if(newPassword.equals("")){
