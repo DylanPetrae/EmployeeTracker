@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#000000">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,11 +16,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Employee Details"
+            android:text="Map"
             android:textSize="27sp"
             android:textStyle="bold"
             android:layout_margin="16dp"
-            android:textColor="#000000"
+            android:textColor="#ffff"
             />
 
         <!--Dividing Line between Header Text and Text Fields-->
@@ -32,25 +32,14 @@
             android:background="@android:color/darker_gray"/>
 
 
-        <ListView
-            android:id="@+id/listView1"
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginHorizontal="16dp"
-            />
-
-        <TextView
-        android:id="@+id/textViewEmployeeList"
-        style="@style/EmployeePageParagraphText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textIsSelectable="true"
-        android:enabled="true"
-        android:isScrollContainer="true"
-        android:focusable="true"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"/>
+            android:layout_height="match_parent"
+            tools:context="com.example.android.employeetracker.MapsActivity" />
     </LinearLayout>
 
     <Button
@@ -64,3 +53,4 @@
         android:onClick="gotoControlPanel" />
 
 </LinearLayout>
+
