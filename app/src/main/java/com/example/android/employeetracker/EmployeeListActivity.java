@@ -68,6 +68,7 @@ public class EmployeeListActivity extends AppCompatActivity implements AdapterVi
     public void populateUsers()
     {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         DocumentReference docRef = db.collection("users").document("list");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
